@@ -25,5 +25,10 @@ run_simulation <- function(n_trials, n, p, cutoff) {
                                   trial_results[[i]][["responses"]], cutoff)
   }
   p_values_total = unlist(p_values_results)
+  save(p_values_total, file = "p_values_total")
+}
+
+make_plot <- function(string) {
+  p_values_total = load(file = string)
   hist(p_values_total)
 }
