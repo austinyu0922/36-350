@@ -15,3 +15,15 @@ model_select <- function(covariates, responses, cutoff) {
   new_p_values = new_summary[, "Pr(>|t|)"]
   return(new_p_values)
 }
+
+run_simulation <- function(n_trials, n, p, cutoff) {
+  trial_results = vector(mode = "list", length = n_trials)
+  p_values_results = vector(mode = "list", length = n_trials)
+  for (i in 1:n_trials) {
+    trial_results[[i]] = generate_data(n, p)
+    p_values_results[[i]] = model_select(trial_results[[i]][["covariates"]], 
+                                  trial_results[[i]][["responses"]], cutoff)
+  }
+  p_values_total = unlist(p_values_results)
+  hist(p_values_total)
+}
