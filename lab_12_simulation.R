@@ -31,4 +31,5 @@ run_simulation <- function(n_trials, n, p, cutoff) {
 make_plot <- function(string) {
   p_values_total = load(file = string)
   hist(p_values_total)
-}
+} 
+
